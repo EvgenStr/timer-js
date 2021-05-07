@@ -1,19 +1,26 @@
 'use strict';
 
-
 const btnStart = document.getElementById('start');
 const btnReset = document.getElementById('reset');
 const btnPause = document.getElementById('pause');
 const btnResume = document.getElementById('resume');
 
 const timeElem = document.querySelector('.time');
-const rootElem = document.querySelector('.timerWrap');
+const rootElements = document.querySelectorAll('.timerWrap');
+
+for (const elem in rootElements) {
+  const btnStart = createElement('button', { classNames: ['start'], handlers: { click: startTimer } });
+  const btnReset = createElement('button', { classNames: ['reset'], handlers: { click: resetTimer }, attributes = { hidden: true } });
+  const btnPause = createElement('button', { classNames: ['pause'], handlers: { click: pauseTimer }, attributes = { hidden: true } });
+  const btnResume = createElement('button', { classNames: ['resume'], handlers: { click: resumeTimer }, attributes = { hidden: true } });
+  const spanTime = createElement('span', { classNames: ['resume'], handlers: { click: resumeTimer }, attributes = { hidden: true } });
+
+  elem.append();
+}
 
 let start = null;
 let current = 0;
 let interval = null;
-
-
 
 btnStart.addEventListener('click', startTimer);
 btnReset.addEventListener('click', resetTimer);
@@ -55,12 +62,30 @@ function resumeTimer(e) {
   start = Date.now();
   let temp = current;
   interval = setInterval(() => {
-    current = Date.now() - start+temp;
+    current = Date.now() - start + temp;
     setTime(current, timeElem);
     btnStart.hidden = true;
     btnPause.hidden = false;
     btnReset.hidden = false;
   });
+}
+
+
+function createElement(
+  tagName,
+  { classNames = [], handlers = {}, attributes = {} } = {},
+  ...children
+) {
+  const elem = document.createElement(tagName);
+  elem.classList.add(...classNames);
+  for (const [attrName, attrValue] of Object.entries(attributes)) {
+    elem.setAttribute(attrName, attrValue);
+  }
+  for (const [eventType, eventHandler] of Object.entries(handlers)) {
+    elem.addEventListener(eventType, eventHandler);
+  }
+  elem.append(...children);
+  return elem;
 }
 
 function setTime(time, elem) {
@@ -74,3 +99,4 @@ function setTime(time, elem) {
   const milliseconds = time % 1000;
   elem.innerText = `${hours}:${(minutes < 10 ? "0" : "") + minutes}:${(seconds < 10 ? "0" : "") + seconds}.${milliseconds}`;
 }
+
