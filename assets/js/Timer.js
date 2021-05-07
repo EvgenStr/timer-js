@@ -5,6 +5,9 @@ class Timer {
     this.start = null;
     this.current = 0;
     this.interval = null;
+    this.time = this.setTime;
+
+    this.init();
   }
   init() {
     this.btnStart = this.createElement('button', { classNames: ['start'], handlers: { click: this.startTimer } });
@@ -20,14 +23,17 @@ class Timer {
     this.btnsWrap = this.createElement('div',
       { classNames: ['btns-wrap'] },
       this.btnPause, this.btnStart, this.btnReset, this.btnResume);
-    return [this.spanTime, this.btnsWrap];
+    // return [this.spanTime, this.btnsWrap];
+    this.root.append(this.spanTime, this.btnsWrap);
   }
+
   startTimer() {
     this.start = Date.now();
     this.current = 0;
+    console.log(this.spanTime);
     this.interval = setInterval(() => {
       this.current = Date.now() - this.start;
-      this.spanTime.innerText = this.setTime(this.current);
+      // this.spanTime.innerText = this.setTime(this.current);
       this.btnStart.hidden = true;
       this.btnPause.hidden = false;
       this.btnReset.hidden = false;
