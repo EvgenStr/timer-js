@@ -1,14 +1,27 @@
 'use strict';
 class Timer {
   constructor(rootElement) {
+    this.root = rootElement;
     this.start = null;
     this.current = 0;
     this.interval = null;
+      }
+  init() {
     this.btnStart = this.createElement('button', { classNames: ['start'], handlers: { click: this.startTimer } });
-    this.btnReset = this.createElement('button', { classNames: ['reset'], handlers: { click: resetTimer }, attributes: { hidden: true } });
-    this.btnPause = this.createElement('button', { classNames: ['pause'], handlers: { click: pauseTimer }, attributes: { hidden: true } });
-    this.btnResume = this.createElement('button', { classNames: ['resume'], handlers: { click: resumeTimer }, attributes: { hidden: true } });
-    this.spanTime = this.createElement('span', { classNames: ['resume'], handlers: { click: resumeTimer }, attributes: { hidden: true } });
+    this.btnReset = this.createElement('button', { classNames: ['reset'], handlers: { click: this.resetTimer }, attributes: { hidden: true } });
+    this.btnPause = this.createElement('button', { classNames: ['pause'], handlers: { click: this.pauseTimer }, attributes: { hidden: true } });
+    this.btnResume = this.createElement('button', { classNames: ['resume'], handlers: { click: this.resumeTimer }, attributes: { hidden: true } });
+    this.spanTime = this.createElement('span', { classNames: ['time'] });
+    this.spanTime.innerText = `00:00:00.000`;
+    this.btnReset.innerText = `Reset`;
+    this.btnStart.innerText = `Start`;
+    this.btnPause.innerText = `Pause`;
+    this.btnResume.innerText = `Start`;
+    this.btnsWrap = this.createElement('div',
+      { classNames: ['btns-wrap'] },
+      this.btnPause, this.btnStart, this.btnReset, this.btnResume);
+    return [this.spanTime, this.btnsWrap];
+
   }
   startTimer() {
     start = Date.now();
@@ -50,6 +63,17 @@ class Timer {
       btnPause.hidden = false;
       btnReset.hidden = false;
     });
+  }
+  setTime(time, elem) {
+    if (time === 0) {
+      elem.innerText = `00:00:00.000`;
+      return;
+    }
+    const hours = Math.floor((time / (1000 * 60 * 60)) % 24)
+    const minutes = Math.floor(time / 60000);
+    const seconds = ((time % 60000) / 1000).toFixed(0);
+    const milliseconds = time % 1000;
+    elem.innerText = `${hours}:${(minutes < 10 ? "0" : "") + minutes}:${(seconds < 10 ? "0" : "") + seconds}.${milliseconds}`;
   }
   createElement(
     tagName,
