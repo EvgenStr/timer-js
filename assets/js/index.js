@@ -10,10 +10,10 @@ const rootElements = document.querySelectorAll('.timerWrap');
 
 for (const elem in rootElements) {
   const btnStart = createElement('button', { classNames: ['start'], handlers: { click: startTimer } });
-  const btnReset = createElement('button', { classNames: ['reset'], handlers: { click: resetTimer }, attributes = { hidden: true } });
-  const btnPause = createElement('button', { classNames: ['pause'], handlers: { click: pauseTimer }, attributes = { hidden: true } });
-  const btnResume = createElement('button', { classNames: ['resume'], handlers: { click: resumeTimer }, attributes = { hidden: true } });
-  const spanTime = createElement('span', { classNames: ['resume'], handlers: { click: resumeTimer }, attributes = { hidden: true } });
+  const btnReset = createElement('button', { classNames: ['reset'], handlers: { click: resetTimer }, attributes : { hidden: true } });
+  const btnPause = createElement('button', { classNames: ['pause'], handlers: { click: pauseTimer }, attributes : { hidden: true } });
+  const btnResume = createElement('button', { classNames: ['resume'], handlers: { click: resumeTimer }, attributes : { hidden: true } });
+  const spanTime = createElement('span', { classNames: ['resume'], handlers: { click: resumeTimer }, attributes : { hidden: true } });
 
   elem.append();
 }
