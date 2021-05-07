@@ -2,15 +2,16 @@
 
 
 const btnStart = document.getElementById('start');
-const time = document.querySelector('.time');
+// const time = document.querySelector('.time');
+const rootElem = document.querySelector('.timerWrap');
 
+btnStart.addEventListener('click', start);
 
-btnStart.addEventListener('click', startTimer());
-
- const startTimer = function(){
-  let start =  Date.now();
+function start() {
+  let start = Date.now();
   let current = 0;
-
-  function timer(){}
-  console.log(start)
+  let interval = null;
+  return function startTimer() {
+    console.log(start)
+  }
 }
