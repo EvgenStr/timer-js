@@ -9,10 +9,9 @@ const timeElem = document.querySelector('.time');
 const rootElements = document.querySelectorAll('.timerWrap');
 
 
- for (const elem of rootElements) {
-   console.log(elem)
-elem.append( ...new Timer().init());
- }
+for (const elem of rootElements) {
+  elem.append(...new Timer().init());
+}
 
 // for (const elem in rootElements) {
 //   const btnStart = createElement('button', { classNames: ['start'], handlers: { click: startTimer } });
