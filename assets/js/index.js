@@ -2,21 +2,17 @@
 
 const rootElements = document.querySelectorAll('.timerWrap');
 
-
 for (const elem of rootElements) {
-
-  // elem.append(spanTime, btnsWrap);
   createTimer(elem);
 }
 
 function createTimer(rootElement) {
-
   const btnStart = createElement('button', { classNames: ['start'], handlers: { click: startTimer } });
   const btnReset = createElement('button', { classNames: ['reset'], handlers: { click: resetTimer }, attributes: { hidden: true } });
   const btnPause = createElement('button', { classNames: ['pause'], handlers: { click: pauseTimer }, attributes: { hidden: true } });
   const btnResume = createElement('button', { classNames: ['resume'], handlers: { click: resumeTimer }, attributes: { hidden: true } });
   const spanTime = createElement('span', { classNames: ['time'] });
-  setTime(0, spanTime);;
+  setTime(0, spanTime);
   btnReset.innerText = `Reset`;
   btnStart.innerText = `Start`;
   btnPause.innerText = `Pause`;
@@ -30,8 +26,6 @@ function createTimer(rootElement) {
   let start = null;
   let current = 0;
   let interval = null;
-
-
 
   btnStart.addEventListener('click', startTimer);
   btnReset.addEventListener('click', resetTimer);
@@ -56,6 +50,7 @@ function createTimer(rootElement) {
     e.target.hidden = true;
     btnResume.hidden = false;
   }
+
   function resetTimer(e) {
     clearInterval(interval);
     interval = null;
@@ -67,6 +62,7 @@ function createTimer(rootElement) {
     e.target.hidden = true;
     setTime(0, spanTime);
   }
+
   function resumeTimer(e) {
     btnPause.hidden = false;
     e.target.hidden = true;
