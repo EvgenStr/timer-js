@@ -38,7 +38,7 @@ function pauseTimer(e) {
   e.target.hidden = true;
   btnResume.hidden = false;
 }
-function resetTimer() {
+function resetTimer(e) {
   clearInterval(interval);
   interval = null;
   start = null;
@@ -46,13 +46,21 @@ function resetTimer() {
   btnStart.hidden = false;
   btnResume.hidden = true;
   btnPause.hidden = true;
+  e.target.hidden = true;
   setTime(0, timeElem);
 }
 function resumeTimer(e) {
   btnPause.hidden = false;
   e.target.hidden = true;
+  start = Date.now();
   let temp = current;
-
+  interval = setInterval(() => {
+    current = Date.now() - start+temp;
+    setTime(current, timeElem);
+    btnStart.hidden = true;
+    btnPause.hidden = false;
+    btnReset.hidden = false;
+  });
 }
 
 function setTime(time, elem) {
