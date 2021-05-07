@@ -55,5 +55,5 @@ function setTime(time, elem) {
   const minutes = Math.floor(time / 60000);
   const seconds = ((time % 60000) / 1000).toFixed(0);
   const milliseconds = time % 1000;
-  elem.innerText = `${hours}:${minutes}:${seconds}.${milliseconds}`;
+  elem.innerText = `${hours}:${(minutes < 10 ? "0" : "") + minutes}:${(seconds < 10 ? "0" : "") + seconds}.${milliseconds}`;
 }
