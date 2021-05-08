@@ -18,7 +18,7 @@ function createTimer(rootElement) {
   btnPause.innerText = `Pause`;
   btnResume.innerText = `Resume`;
   const btnsWrap = createElement('div',
-    { classNames: ['btns-wrap'] },
+    { classNames: ['btnsWrap'] },
     btnStart, btnReset, btnResume, btnPause);
 
   rootElement.append(spanTime, btnsWrap);
@@ -44,13 +44,11 @@ function createTimer(rootElement) {
       btnReset.hidden = false;
     });
   }
-
   function pauseTimer(e) {
     clearInterval(interval);
     e.target.hidden = true;
     btnResume.hidden = false;
   }
-
   function resetTimer(e) {
     clearInterval(interval);
     interval = null;
@@ -62,7 +60,6 @@ function createTimer(rootElement) {
     e.target.hidden = true;
     setTime(0, spanTime);
   }
-
   function resumeTimer(e) {
     btnPause.hidden = false;
     e.target.hidden = true;
@@ -95,6 +92,9 @@ function createElement(
   return elem;
 }
 
+/*
+UTILS
+*/
 function setTime(time, elem) {
   if (time === 0) {
     elem.innerText = `00:00:00.000`;

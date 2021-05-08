@@ -1,0 +1,21 @@
+*{
+  box-sizing: border-box;
+}
+
+.timerWrap{
+  max-width: 50%;
+  margin: 0 auto;
+}
+
+.time{
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.btnsWrap{
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 80%;
+}
