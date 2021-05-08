@@ -1,21 +1,26 @@
-*{
+* {
   box-sizing: border-box;
 }
 
-.timerWrap{
+.timerWrap {
   max-width: 50%;
-  margin: 0 auto;
+  margin: 25px auto;
 }
 
-.time{
+.time {
   display: block;
   width: 100%;
   text-align: center;
+  padding: 10px;
+  font-size: 1.5rem;
 }
 
-.btnsWrap{
+.btnsWrap {
   display: flex;
   justify-content: center;
   margin: 0 auto;
   max-width: 80%;
+}
+.btnsWrap > button {
+  margin: 2px 5px;
 }
