@@ -101,10 +101,10 @@ function setTime(time, elem) {
     return;
   }
   const hours = Math.floor((time / (1000 * 60 * 60)) % 24)
-  const minutes = Math.floor(time / 60000);
-  const seconds = ((time % 60000) / 1000).toFixed(0);
-  const milliseconds = time % 1000;
-  elem.innerText = `${hours}:${(minutes < 10 ? "0" : "") + minutes}:${(seconds < 10 ? "0" : "") + seconds}.${milliseconds}`;
+  const min = Math.floor(time / 60000);
+  const sec = ((time % 60000) / 1000).toFixed(0);
+  const mil = time % 1000;
+  elem.innerText = `${hours}:${(min < 10 ? "0" : "") + min}:${(sec < 10 ? "0" : "") + sec}.${(mil < 10 ? "00" : mil < 100 ? "0" : "") + mil}`;
 }
 
 // for (const elem of rootElements) {
